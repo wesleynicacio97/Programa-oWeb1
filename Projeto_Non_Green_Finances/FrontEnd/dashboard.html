@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Non-Green Finances</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">💸 Non-Green Finances</div>
+    <nav class="menu">
+      <a href="index.html">Início</a>
+      <a href="#" id="logoutBtn">Sair</a>
+    </nav>
+  </header>
+
+  <div class="dashboard-container">
+   <aside class="sidebar">
+  <h3>Menu</h3>
+  <ul>
+    <li><a href="#tarefas">Tarefas</a></li>
+    <li><a href="#grafico">Estatísticas</a></li>
+    <li><a href="#carteira">Carteira</a></li>
+  </ul>
+</aside>
+
+
+    <main class="dashboard-content">
+      <section id="Investimentos" class="card">
+        <h2>Seus Investimentos</h2>
+        <input type="text" id="searchTask" placeholder="Buscar investimento...">
+        <ul id="taskList"></ul>
+      </section>
+
+      <section id="grafico" class="card">
+        <h2>Estatísticas</h2>
+        <canvas id="taskChart"></canvas>
+      </section>
+
+      <section id="carteira" class="card">
+        
+  <div id="saldo" class="saldo">
+    Saldo Total: <span id="saldoValor">R$ 50.000,00</span>
+  </div>
+  <h2>Carteira de Investimentos 💹</h2>
+  <canvas id="walletChart"></canvas>
+  
+</section>
+
+      <section id="novo" class="card">
+        <h2>Adicionar Novo Investimento</h2>
+        <form id="taskForm">
+          <input type="text" id="taskTitle" placeholder="Título do investimento" required>
+          <select id="taskStatus">
+            <option value="pendente">Pendente</option>
+            <option value="concluída">Concluída</option>
+          </select>
+          <input type="file" id="taskFile">
+          <button type="submit" class="btn-primary">Adicionar</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>© 2025 Non-Green Finances</p>
+  </footer>
+
+  <script type="module" src="js/api.js"></script>
+  <script type="module" src="js/tasks.js"></script>
+  <script type="module" src="js/dashboard.js"></script>
+
+  
+</body>
+</html>
+
+<script>
+  const ctxWallet = document.getElementById('walletChart');
+
+  new Chart(ctxWallet, {
+    type: 'doughnut',
+    data: {
+      labels: [
+        'Caixinha 110% CDI',
+        'Fundos de Investimentos',
+        'Ações',
+        'Criptomoedas',
+        'Tesouro Direto / Renda Fixa'
+      ],
+      datasets: [{
+        label: 'Distribuição da Carteira',
+        data: [25, 20, 30, 15, 10],
+        backgroundColor: [
+          '#00B26A', // verde caixinha
+          '#4CAF50', // fundos
+          '#E8C547', // ações
+          '#9C27B0', // cripto
+          '#007A4D'  // tesouro
+        ],
+        borderColor: '#ffffff',
+        borderWidth: 2,
+        hoverOffset: 15
+      }]
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: 'Distribuição da Carteira de Investimentos',
+          color: '#006B3C',
+          font: {
+            size: 18,
+            weight: 'bold'
+          }
+        },
+        legend: {
+          position: 'right',
+          labels: {
+            color: '#333',
+            font: {
+              size: 14
+            }
+          }
+        }
+      }
+    }
+  });
+</script>
