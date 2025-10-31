@@ -1,4 +1,4 @@
-/* ==== RESET E BASE ==== */
+/* ==== RESET E BASE ==== */ 
 * {
   margin: 0;
   padding: 0;
@@ -275,17 +275,30 @@ body {
   }
 }
 
+/* ==== COR DE FUNDO BODY ==== */
 body {
   background: linear-gradient(180deg, #00995D, #00B26A);
   color: white;
 }
 
-#carteira {
+/* ==== SEÇÕES DO DASHBOARD ==== */
+.main-content section {
+  display: none; /* todas escondidas por padrão */
+}
+
+.main-content section.active {
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: fadeIn 0.4s ease-in-out;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==== CARTEIRA ==== */
 #carteira canvas {
   max-width: 600px;
   margin-top: 20px;
@@ -301,4 +314,125 @@ body {
   text-align: center;
   margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* ==== ESTATÍSTICAS ==== */
+.estatisticas {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.estatisticas h2 {
+  color: #006B3C;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+}
+
+.stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.stat-box {
+  flex: 1 1 220px;
+  background: linear-gradient(135deg, #E4F3E8, #ffffff);
+  border-radius: 12px;
+  text-align: center;
+  padding: 20px 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-box i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.stat-box h3 {
+  margin: 5px 0;
+  color: #333;
+}
+
+.stat-box p {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #00995D;
+}
+
+/* Cores por tipo */
+.stat-box.verde { border-top: 5px solid #00995D; }
+.stat-box.dourado { border-top: 5px solid #E8C547; }
+.stat-box.roxo { border-top: 5px solid #9C27B0; }
+.stat-box.azul { border-top: 5px solid #007A4D; }
+
+.stat-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 768px) {
+  .stats-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ==== INVESTIMENTOS ==== */
+.investimentos-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.invest-card {
+  flex: 1 1 250px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.invest-card i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.invest-card h3 {
+  color: #006B3C;
+  margin-bottom: 8px;
+}
+
+.invest-card p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.invest-card strong {
+  color: #00995D;
+}
+
+.invest-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Cores específicas por tipo */
+.invest-card.acao { border-top: 5px solid #00B26A; }
+.invest-card.fundo { border-top: 5px solid #E8C547; }
+.invest-card.cripto { border-top: 5px solid #FF8C00; }
+.invest-card.renda-fixa { border-top: 5px solid #007A4D; }
+
+@media (max-width: 768px) {
+  .investimentos-container {
+    flex-direction: column;
+    align-items: center;
+  }
 }
