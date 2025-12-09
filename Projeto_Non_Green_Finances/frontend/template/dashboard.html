@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Non-Green Finances</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Biblioteca de gráficos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="logo">💸 Non-Green Finances</div>
+    <nav class="menu">
+      <a href="index.html">Início</a>
+      <a href="#" id="logoutBtn">Sair</a>
+    </nav>
+  </header>
+
+  <div class="dashboard-container">
+
+    <aside class="sidebar">
+      <h3>Menu</h3>
+      <ul>
+        <li><a href="#" data-target="estatisticas"> Estatísticas</a></li>
+        <li><a href="#" data-target="carteira"> Carteira</a></li>
+        <li><a href="#" data-target="investimentos"> Investimentos</a></li>
+        <li><a href="conteudos.html">Conteúdos</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+
+      <!-- SEÇÃO 1 - ESTATÍSTICAS -->
+      <section id="estatisticas" class="card">
+        <h2>📊 Estatísticas Financeiras</h2>
+        <div class="stats-container">
+          <div class="stat-box verde">
+            <i class="fas fa-wallet"></i>
+            <h3>Total Investido</h3>
+            <p id="totalInvestido">R$ 50.000,00</p>
+          </div>
+          <div class="stat-box dourado">
+            <i class="fas fa-chart-line"></i>
+            <h3>Rendimento do Mês</h3>
+            <p id="rendimentoMes">+ R$ 1.250,00 (2,5%)</p>
+          </div>
+          <div class="stat-box roxo">
+            <i class="fas fa-coins"></i>
+            <h3>Lucro Acumulado</h3>
+            <p id="lucroAcumulado">R$ 8.750,00</p>
+          </div>
+          <div class="stat-box azul">
+            <i class="fas fa-percentage"></i>
+            <h3>Rentabilidade Anual</h3>
+            <p id="rentabilidadeAnual">13,7%</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 2 - CARTEIRA -->
+      <section id="carteira" class="card">
+        <h2>💹 Carteira de Investimentos</h2>
+        <div id="saldo" class="saldo">
+          Saldo Total: <span id="saldoValor">R$ 50.000,00</span>
+        </div>
+        <canvas id="walletChart"></canvas>
+        <canvas id="walletGrowth" style="margin-top:40px;"></canvas>
+      </section>
+
+      <!-- SEÇÃO 3 - INVESTIMENTOS -->
+      <section id="investimentos" class="card">
+        <h2>💼 Meus Investimentos</h2>
+        <div class="investimentos-container">
+          <div class="invest-card acao">
+            <i class="fas fa-chart-line"></i>
+            <h3>Banco do Brasil (BBAS3)</h3>
+            <p>💹 Rentabilidade: <strong>+12,5%</strong></p>
+            <p>🕒 Último rendimento: R$ 2,45 / ação</p>
+          </div>
+
+          <div class="invest-card fundo">
+            <i class="fas fa-building-columns"></i>
+            <h3>Fundo Imobiliário XPML11</h3>
+            <p>🏢 Rentabilidade: <strong>+8,7%</strong></p>
+            <p>💰 Último rendimento: R$ 1,10 / cota</p>
+          </div>
+
+          <div class="invest-card cripto">
+            <i class="fab fa-bitcoin"></i>
+            <h3>Bitcoin (BTC)</h3>
+            <p>🪙 Rentabilidade: <strong>+23,4%</strong></p>
+            <p>📈 Cotação atual: R$ 340.000,00</p>
+          </div>
+
+          <div class="invest-card renda-fixa">
+            <i class="fas fa-piggy-bank"></i>
+            <h3>Caixinha 110% do CDI</h3>
+            <p>💸 Rentabilidade: <strong>110% CDI</strong></p>
+            <p>📆 Liquidez diária</p>
+          </div>
+
+          <div class="invest-card fundo">
+            <i class="fas fa-seedling"></i>
+            <h3>Fundo Verde XP</h3>
+            <p>🌱 Rentabilidade: <strong>+14,2%</strong></p>
+            <p>📊 Foco em ações sustentáveis</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>© 2025 Non-Green Finances</p>
+  </footer>
+
+  <!-- Scripts internos -->
+  <script>
+    const menuLinks = document.querySelectorAll('.sidebar a');
+    const sections = document.querySelectorAll('.main-content section');
+
+    function mostrarSecao(id) {
+      sections.forEach(sec => {
+        sec.classList.remove('active');
+        if (sec.id === id) sec.classList.add('active');
+      });
+    }
+
+    menuLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = link.getAttribute('data-target');
+        if (target) mostrarSecao(target);
+      });
+    });
+
+    mostrarSecao('estatisticas');
+  </script>
+
+  <!-- Gráficos -->
+  <script src="../static/JS/dashboard.js"></script>
+  <script src="../static/JS/main.js"></script>
+
+  <script>
+    document.getElementById("logoutBtn").addEventListener("click", function () {
+      window.location.href = "index.html";
+    });
+  </script>
+
+</body>
+</html>
+
+
